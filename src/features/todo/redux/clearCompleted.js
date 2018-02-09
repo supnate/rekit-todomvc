@@ -1,6 +1,4 @@
-import {
-  TODO_CLEAR_COMPLETED,
-} from './constants';
+import { TODO_CLEAR_COMPLETED } from './constants';
 
 export function clearCompleted() {
   return {
@@ -13,6 +11,7 @@ export function reducer(state, action) {
     case TODO_CLEAR_COMPLETED:
       return {
         ...state,
+        todos: state.todos.filter(todo => todo.completed === false),
       };
 
     default:

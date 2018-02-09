@@ -1,6 +1,4 @@
-import {
-  TODO_EDIT_TODO,
-} from './constants';
+import { TODO_EDIT_TODO } from './constants';
 
 export function editTodo() {
   return {
@@ -13,6 +11,7 @@ export function reducer(state, action) {
     case TODO_EDIT_TODO:
       return {
         ...state,
+        todos: state.todos.map(todo => (todo.id === action.id ? { ...todo, text: action.text } : todo)),
       };
 
     default:

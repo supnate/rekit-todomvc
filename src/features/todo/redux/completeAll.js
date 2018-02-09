@@ -1,6 +1,4 @@
-import {
-  TODO_COMPLETE_ALL,
-} from './constants';
+import { TODO_COMPLETE_ALL } from './constants';
 
 export function completeAll() {
   return {
@@ -11,8 +9,13 @@ export function completeAll() {
 export function reducer(state, action) {
   switch (action.type) {
     case TODO_COMPLETE_ALL:
+      const areAllMarked = state.todos.every(todo => todo.completed);
       return {
         ...state,
+        todos: state.todos.map(todo => ({
+          ...todo,
+          completed: !areAllMarked,
+        })),
       };
 
     default:
