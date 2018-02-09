@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import homeReducer from '../features/home/redux/reducer';
 import commonReducer from '../features/common/redux/reducer';
+import todoReducer from '../features/todo/redux/reducer';
 
 // NOTE 1: DO NOT CHANGE the 'reducerMap' name and the declaration pattern.
 // This is used for Rekit cmds to register new features, remove features, etc.
@@ -12,6 +13,7 @@ const reducerMap = {
   router: routerReducer,
   home: homeReducer,
   common: commonReducer,
+  todo: todoReducer,
 };
 
 export default combineReducers(reducerMap);
