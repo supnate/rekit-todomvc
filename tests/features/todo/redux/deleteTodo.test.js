@@ -11,16 +11,38 @@ import {
 
 describe('todo/redux/deleteTodo', () => {
   it('returns correct action by deleteTodo', () => {
-    expect(deleteTodo()).to.have.property('type', TODO_DELETE_TODO);
+    expect(deleteTodo(1)).to.deep.equal({
+      type: TODO_DELETE_TODO,
+      id: 1,
+    });
   });
 
   it('handles action type TODO_DELETE_TODO correctly', () => {
-    const prevState = {};
+    const prevState = {
+      todos: [
+        {
+          text: 'Use Rekit',
+          completed: false,
+          id: 0
+        },
+        {
+          text: 'Run the tests',
+          completed: false,
+          id: 1
+        }
+      ],
+    };
     const state = reducer(
       prevState,
-      { type: TODO_DELETE_TODO }
+      { type: TODO_DELETE_TODO, id: 1 }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state).to.deep.equal(prevState); // TODO: replace this line with real case.
+    expect(state.todos).to.deep.equal([
+      {
+        text: 'Use Rekit',
+        completed: false,
+        id: 0
+      }
+    ]);
   });
 });

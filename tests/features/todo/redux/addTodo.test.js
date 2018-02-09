@@ -11,16 +11,23 @@ import {
 
 describe('todo/redux/addTodo', () => {
   it('returns correct action by addTodo', () => {
-    expect(addTodo()).to.have.property('type', TODO_ADD_TODO);
+    expect(addTodo('Use Rekit')).to.deep.equal({
+      type: TODO_ADD_TODO,
+      text: 'Use Rekit',
+    });
   });
 
   it('handles action type TODO_ADD_TODO correctly', () => {
-    const prevState = {};
+    const prevState = { todos: [] };
     const state = reducer(
       prevState,
-      { type: TODO_ADD_TODO }
+      { type: TODO_ADD_TODO, text: 'Run the tests' }
     );
     expect(state).to.not.equal(prevState); // should be immutable
-    expect(state).to.deep.equal(prevState); // TODO: replace this line with real case.
+    expect(state.todos).to.deep.equal([{
+      text: 'Run the tests',
+      completed: false,
+      id: 0,
+    }]);
   });
 });

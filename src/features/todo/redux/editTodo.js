@@ -1,8 +1,10 @@
 import { TODO_EDIT_TODO } from './constants';
 
-export function editTodo() {
+export function editTodo(id, text) {
   return {
     type: TODO_EDIT_TODO,
+    id,
+    text,
   };
 }
 
