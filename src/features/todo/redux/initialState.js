@@ -6,6 +6,13 @@
 
 // NOTE: initialState constant is necessary so that Rekit could auto add initial state when creating async actions.
 const initialState = {
+  todos: [
+    {
+      id: 0,
+      title: 'Start to use Rekit!',
+      completed: false,
+    },
+  ],
 };
 
 export default initialState;
