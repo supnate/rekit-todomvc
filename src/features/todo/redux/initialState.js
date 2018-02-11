@@ -9,7 +9,7 @@ const initialState = {
   todos: [
     {
       id: 0,
-      title: 'Start to use Rekit!',
+      text: 'Start to use Rekit!',
       completed: false,
     },
   ],

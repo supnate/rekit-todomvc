@@ -1,16 +1,16 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
-import { Item } from 'src/features/todo';
+import { TodoTextInput } from 'src/features/todo';
 
-describe('todo/Item', () => {
+describe('todo/TodoTextInput', () => {
   it('renders node with correct class name', () => {
     const renderedComponent = shallow(
-      <Item />
+      <TodoTextInput />
     );
 
     expect(
-      renderedComponent.find('.todo-item').getElement()
+      renderedComponent.find('.todo-todo-text-input').getElement()
     ).to.exist;
   });
 });

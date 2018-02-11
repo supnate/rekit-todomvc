@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
-import { Header, Item, Footer } from './';
+import { Header, TodoItem, Footer } from './';
 
 export class App extends Component {
   static propTypes = {
@@ -12,15 +12,21 @@ export class App extends Component {
   };
 
   render() {
+    const { todos } = this.props.todo;
+    const { editTodo, deleteTodo, completeTodo } = this.props.actions;
+    const completedCount = todos.reduce((count, todo) => (todo.completed ? count + 1 : count), 0);
+    const activeCount = todos.length - completedCount;
     return (
       <div className="todo-app">
-        <Header />
+        <Header addTodo={this.props.actions.addTodo} />
         <section>
           <ul>
-            <Item />
+            {todos.map(todo => (
+              <TodoItem key={todo.id} todo={todo} editTodo={editTodo} deleteTodo={deleteTodo} completeTodo={completeTodo} />
+            ))}
           </ul>
         </section>
-        <Footer />
+        <Footer activeCount={activeCount} />
       </div>
     );
   }
