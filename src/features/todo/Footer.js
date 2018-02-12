@@ -30,7 +30,7 @@ export default class Footer extends Component {
             <Link to="/todo/completed">Completed</Link>
           </li>
         </ul>
-        <button>Clear completed</button>
+        <button className="clear-completed" onClick={this.props.clearCompleted}>Clear completed</button>
       </footer>
     );
   }

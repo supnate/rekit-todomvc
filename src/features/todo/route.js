@@ -3,7 +3,7 @@ import {
 } from './';
 
 export default {
-  path: 'todo',
+  path: 'todo/:filter?',
   name: 'Todo',
   childRoutes: [
     { path: '', name: 'App', component: App },
