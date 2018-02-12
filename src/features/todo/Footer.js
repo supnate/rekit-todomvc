@@ -8,29 +8,30 @@ export default class Footer extends Component {
     activeCount: PropTypes.number.isRequired,
     filter: PropTypes.string.isRequired,
     clearCompleted: PropTypes.func.isRequired,
-    onShow: PropTypes.func.isRequired,
   };
 
   render() {
-    const { activeCount } = this.props;
-    const itemWord = activeCount === 1 ? 'item' : 'items'
+    const { activeCount, completedCount, filter } = this.props;
+    const itemWord = activeCount === 1 ? 'item' : 'items';
     return (
-      <footer className="todo-footer">
+      <footer className="todo-footer footer">
         <span className="todo-count">
           <strong>{activeCount || 'No'}</strong> {itemWord} left
         </span>
-        <ul>
-          <li>
-            <Link to="/todo">All</Link>
-          </li>
-          <li>
-            <Link to="/todo/active">Active</Link>
-          </li>
-          <li>
-            <Link to="/todo/completed">Completed</Link>
-          </li>
+        <ul className="filters">
+          {['All', 'Active', 'Completed'].map(f => (
+            <li key={f}>
+              <Link to={`/todo/${f.toLowerCase()}`} className={(filter || 'all') === f.toLowerCase() ? 'selected' : ''}>
+                {f}
+              </Link>
+            </li>
+          ))}
         </ul>
-        <button className="clear-completed" onClick={this.props.clearCompleted}>Clear completed</button>
+        {completedCount > 0 && (
+          <button className="clear-completed" onClick={this.props.clearCompleted}>
+            Clear completed
+          </button>
+        )}
       </footer>
     );
   }
